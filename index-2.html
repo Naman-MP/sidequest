@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sidequests</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style-2.css">
+</head>
+<body>
+
+<header class="topbar">
+  <h1>SIDEQUESTS<span class="dot">.</span></h1>
+  <button id="settingsBtn" class="iconbtn" title="Settings">⚙</button>
+</header>
+
+<!-- SETTINGS PANEL -->
+<div id="settingsPanel" class="panel hidden">
+  <h2>Setup</h2>
+  <label>Gemini API Key
+    <input type="password" id="geminiKey" placeholder="AIza...">
+  </label>
+  <label>Google OAuth Client ID <span class="muted">(for Drive uploads)</span>
+    <input type="text" id="gClientId" placeholder="xxxx.apps.googleusercontent.com">
+  </label>
+  <button id="saveSettings" class="btn primary">Save</button>
+  <p class="muted small">Keys are stored only in this browser (localStorage). Nothing is sent anywhere except Google's own APIs.</p>
+</div>
+
+<!-- CONTROLS -->
+<main>
+  <section class="controls">
+    <label>Location
+      <input type="text" id="locationInput" placeholder="Brookfield, Indiranagar, anywhere...">
+    </label>
+    <label>Budget: ₹<span id="budgetVal">500</span>
+      <input type="range" id="budgetSlider" min="0" max="5000" step="50" value="500">
+    </label>
+    <div class="btnrow">
+      <button id="generateBtn" class="btn primary">🎲 Generate Sidequest</button>
+      <button id="rerollBtn" class="btn ghost">🔁 Reroll</button>
+    </div>
+  </section>
+
+  <section id="questArea"></section>
+
+  <nav class="tabs">
+    <button class="tabbtn active" data-tab="current">Current</button>
+    <button class="tabbtn" data-tab="favorites">❤ Favorites</button>
+    <button class="tabbtn" data-tab="history">📜 History</button>
+  </nav>
+
+  <div id="favoritesBar" class="listbar hidden">
+    <button id="favPdfBtn" class="btn small ghost">📄 Export favorites to PDF</button>
+  </div>
+  <section id="favoritesList" class="listgrid hidden"></section>
+
+  <div id="historyBar" class="listbar hidden">
+    <button id="histPdfBtn" class="btn small ghost">📄 Export history to PDF</button>
+  </div>
+  <section id="historyList" class="listgrid hidden"></section>
+</main>
+
+<canvas id="renderCanvas" width="800" height="1000" class="hidden"></canvas>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="script-2.js"></script>
+</body>
+</html>
